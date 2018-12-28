@@ -9,7 +9,7 @@ def save_pic():
     while(1): #to keep the camera switched on
         ret,frame = cap.read()
         gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY) #convert image into grayscale because, color images are not needed to find face in images.
-        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.5,minNeighbors = 5 ) #1.grayscale image,2.decrease factor to improve,3,
+        faces = face_cascade.detectMultiScale(gray) #1.grayscale image,2.decrease factor to improve,3,
         for(x,y,w,h) in faces:
             #print(x,y,h,w)
             gray_roi = gray[y:y+h,x:x+w]
@@ -19,7 +19,7 @@ def save_pic():
             end_cwidth = x + w
             end_cheight = y + h
             cv2.rectangle(frame, (x,y),(end_cwidth, end_cheight), color, stroke)
-            img_item= "my-image.png"
+            img_item= "my-image%d.png"%(faces.shape[0])
             cv2.imwrite(img_item,color_roi) #to save the picture.
         cv2.imshow('frame', frame)
         if cv2.waitKey(33)== 27 & 0xFF!= ord('q'): #click escape to exit.
