@@ -19,7 +19,7 @@ def save_pic():
             end_cwidth = x + w
             end_cheight = y + h
             cv2.rectangle(frame, (x,y),(end_cwidth, end_cheight), color, stroke)
-            img_item= "my-image%d.png"%(faces.shape[0])
+            img_item= "my-image%d.png"%(faces.shape[0])# this is the change
             cv2.imwrite(img_item,color_roi) #to save the picture.
         cv2.imshow('frame', frame)
         if cv2.waitKey(33)== 27 & 0xFF!= ord('q'): #click escape to exit.
